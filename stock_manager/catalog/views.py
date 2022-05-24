@@ -1,5 +1,3 @@
-import json
-import locale
 from flask import request, jsonify, Blueprint, abort
 from flask.views import MethodView
 from stock_manager import db, app
