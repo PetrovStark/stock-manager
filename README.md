@@ -3,9 +3,7 @@ A simple REST API for product's stock management, written in Python with Flask, 
 
 ## Build instructions
 ```shell
-pip3 install flask
-pip3 install flask-sqlalchemy
-python -m pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 python3 run.py
 ```
 
