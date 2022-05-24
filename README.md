@@ -10,4 +10,4 @@ python3 run.py
 ```
 
 ## Documentation
-(Link for the postman docs)[https://documenter.getpostman.com/view/4846573/Uz59Mysb]
+[Read the Postman docs for this API](https://documenter.getpostman.com/view/4846573/Uz59Mysb)
