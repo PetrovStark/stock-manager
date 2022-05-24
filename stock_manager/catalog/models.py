@@ -17,6 +17,5 @@ class Product(db.Model):
         '''
         Get the product price formatted based on locale's currency.
         '''
-        print(self.price)
         locale.setlocale(locale.LC_ALL, locale_code)
         return locale.currency(self.price, grouping=True, symbol=True)
