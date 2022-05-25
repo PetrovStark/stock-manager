@@ -33,7 +33,7 @@ class ProductView(MethodView):
             product = Product.query.filter_by(id=id).first()
 
             if not product:
-                abort(404)
+                abort(404, 'This product does not exist')
             
             res = {
                 'name': product.name,
