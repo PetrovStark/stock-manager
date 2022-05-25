@@ -3,17 +3,7 @@ from flask.views import MethodView
 from stock_manager import db, app
 from stock_manager.catalog.models import Product
 
-
 catalog = Blueprint('catalog', __name__)
-
-@catalog.route('/')
-@catalog.route('/home')
-def home():
-    return jsonify({
-        'message': 'Sistema gerenciador de estoque',
-        'version': '1.0',
-        'author': 'SamuraiPetrus'
-    })
 
 class ProductView(MethodView):
     def get(self, id=None, page=1):
