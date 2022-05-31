@@ -41,6 +41,10 @@ class ProductView(MethodView):
     def post(self):
         req = request.get_json()
         product = Product(req['name'], req['price'])
+        
+        if Product.is_product_already_exists(Product, req['name']):
+            abort(400, 'There\'s another product with the same name.')
+
         db.session.add(product)
         db.session.commit()
 

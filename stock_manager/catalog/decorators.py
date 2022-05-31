@@ -21,10 +21,10 @@ def validate_post_args(function):
             field_type = type(field['value']).__name__
 
             if not field['value']:
-                abort(403, 'The "'+field_name+'" field is required.')
+                abort(400, 'The "'+field_name+'" field is required.')
             
             if field_type != field['expected_type']:
-                abort(403, 'The type of "'+field_name+'" field is invalid. "'+field_type+'" was given but "'+field['expected_type']+'" was expected.')
+                abort(400, 'The type of "'+field_name+'" field is invalid. "'+field_type+'" was given but "'+field['expected_type']+'" was expected.')
     
         return function(self, name, price)
     

@@ -21,3 +21,6 @@ class Product(db.Model):
         '''
         locale.setlocale(locale.LC_ALL, locale_code)
         return locale.currency(self.price, grouping=True, symbol=True)
+    
+    def is_product_already_exists(self, product_name):
+        return self.query.filter_by(name=product_name).first()
