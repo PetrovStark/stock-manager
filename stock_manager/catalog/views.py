@@ -7,17 +7,22 @@ catalog = Blueprint('catalog', __name__)
 
 class ProductView(MethodView):
     def get(self, id=None, page=1):
-        res = {}
+        args = request.args.to_dict()
+        res = []
 
         if not id:
+            if args.get('page') is not None:
+                page = int(args.get('page'))
+
             # List all products.
             products = Product.query.paginate(page, 10).items
 
             for product in products:
-                res[product.id] = {
+                res.append({
+                    'id': product.id,
                     'name': product.name,
                     'price': Product.get_formatted_price(product)
-                }
+                })
         else:
             # List ptoduct by ID.
             product = Product.query.filter_by(id=id).first()
@@ -26,6 +31,7 @@ class ProductView(MethodView):
                 abort(404, 'This product does not exist')
             
             res = {
+                'id': product.id,
                 'name': product.name,
                 'price': Product.get_formatted_price(product)
             }
@@ -39,10 +45,9 @@ class ProductView(MethodView):
         db.session.commit()
 
         return jsonify({
-            product.id: {
-                'name': product.name,
-                'price': Product.get_formatted_price(product)
-            }
+            'id': product.id,
+            'name': product.name,
+            'price': Product.get_formatted_price(product)
         })
 
 product_view = ProductView.as_view('product_view')
